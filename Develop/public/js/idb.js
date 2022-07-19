@@ -1,33 +1,38 @@
 let db;
-
 const request = indexedDB.open("budgeTracker", 1);
 
 request.onupgradeneeded = function(event) {
     const db = event.target.result;
-    db.createObjectStore("new_transaction", { autoIncrement: true });
+    db.createObjectStore("new_amount", { autoIncrement: true });
 };
 
+// upon a successful 
 request.onsuccess = function(event) {
     db = event.target.result;
 
     if(navigator.onLine) {
-        uploadTransaction();
+        uploadAmount();
     }
 };
 
 request.onerror = function(event) {
+    // log error here
     console.log(event.target.errorCode);
-};
+  };
 
+
+  // This function will be executed if we attempt to submit a new pizza and there's no internet connection
 function saveRecord(record) {
-    const transaction = db.transaction(["new_transaction"], "readwrite");
-    const transactionObjectStore = transaction.objectStore("new_transaction");
+    const transaction = db.transaction(["new_amount"], "readwrite");
+    const transactionObjectStore = transaction.objectStore("new_amount");
     transactionObjectStore.add(record);
 }
 
-function uploadTransaction() {
-    const transaction = db.transaction(["new_transaction"], "readwrite");
-    const transactionObjectStore = transaction.objectStore("new_transaction");
+
+
+function uploadAmount() {
+    const transaction = db.transaction(["new_amount"], "readwrite");
+    const transactionObjectStore = transaction.objectStore("new_amount");
     const getAll = transactionObjectStore.getAll();
 
     getAll.onsuccess = function() {
@@ -46,16 +51,14 @@ function uploadTransaction() {
                     throw new Error(serverResponse);
                 }
 
-                const transaction = db.transaction(["new_transaction"], "readwrite");
-                const transactionObjectStore = transaction.objectStore("new_transaction");
+                const transaction = db.transaction(["new_amount"], "readwrite");
+                const transactionObjectStore = transaction.objectStore("new_amount");
                 transactionObjectStore.clear();
                 alert("All saved transactions have been submitted!");
             })
-            .catch(err => {
-                console.log(err);
-            });
+           
         }
     };
 }
 
-window.addEventListener("online", uploadTransaction);
+window.addEventListener("online", uploadAmount);

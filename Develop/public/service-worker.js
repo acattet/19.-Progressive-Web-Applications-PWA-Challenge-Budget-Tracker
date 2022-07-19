@@ -1,4 +1,4 @@
-const APP_PREFIX = "JECBudgetTracker-";
+const APP_PREFIX = "budgetTracker";
 const VERSION = "version_01";
 const CACHE_NAME = APP_PREFIX + VERSION;
 const FILES_TO_CACHE = [

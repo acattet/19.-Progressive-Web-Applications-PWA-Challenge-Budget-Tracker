@@ -1,0 +1,24 @@
+{
+  "name": "ch.19",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acattet/19.-Progressive-Web-Applications-PWA-Challenge-Budget-Tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acattet/19.-Progressive-Web-Applications-PWA-Challenge-Budget-Tracker/issues"
+  },
+  "homepage": "https://github.com/acattet/19.-Progressive-Web-Applications-PWA-Challenge-Budget-Tracker#readme",
+  "keywords": [],
+  "devDependencies": {
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.6.0"
+  }
+}
