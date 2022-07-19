@@ -1,6 +1,6 @@
 let db;
 
-const request = indexedDB.open("budgetTracker", 1);
+const request = indexedDB.open("budgeTracker", 1);
 
 request.onupgradeneeded = function(event) {
     const db = event.target.result;
@@ -15,6 +15,9 @@ request.onsuccess = function(event) {
     }
 };
 
+request.onerror = function(event) {
+    console.log(event.target.errorCode);
+};
 
 function saveRecord(record) {
     const transaction = db.transaction(["new_transaction"], "readwrite");
@@ -48,7 +51,9 @@ function uploadTransaction() {
                 transactionObjectStore.clear();
                 alert("All saved transactions have been submitted!");
             })
-           
+            .catch(err => {
+                console.log(err);
+            });
         }
     };
 }
